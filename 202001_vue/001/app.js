@@ -27,6 +27,19 @@ Vue.createApp({
             return this.categories.indexOf(categoryName) !== -1
         },
     },
+    watch: {
+        todos: {
+            hander: function(next) {
+                window.localStorage.setItem('todos', JSON.stringify(next))
+            },
+            deep: true,
+        },
+        categories: {
+            hander: function() {
+                window.localStorage.setItem('categories', JSON.stringify(next))
+            }
+        },
+    },
     methods: {
         createTodo: function() {
             if (!this.canCreatedTodo) {
@@ -50,6 +63,18 @@ Vue.createApp({
             }
             this.categories.push(this.categoryName)
             this.categoryName = ''
+        },
+        created: function() {
+            const todos = window.localStorage.getItem('todos')
+            const categories = window.localStorage.getItem('categories')
+
+            if (todos) {
+                this.todos = JSON.parse(todos)
+            }
+
+            if (categories) {
+                this.categories = JSON.parse(categories)
+            }
         },
     },
 }).mount('#app')
