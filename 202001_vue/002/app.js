@@ -18,6 +18,7 @@ const todoItem = {
     methods: {
         onChangeTodo: function($event) {
             this.$emit('update:done', $event.target.checked)
+            console.log($event)
         },
     },
 }

@@ -80,9 +80,9 @@
                     <input v-model.trim="searchWord" type="text" id="todo-search-keyword" />
                 </div>
             </div>
-            <ul v-if="hasTodos" class="todo-list">
+            <transition-group name="todo-list" tag="ul" v-if="hasTodos" class="todo-list">
                 <todo-item v-for="(todo, index) in resultTodos" :key="todo.id" :todo="todo" v-model:done="todo.done"></todo-item>
-            </ul>
+            </transition-group>
             <p v-else>ToDoタスクはまだ登録されていません</p>
         </div>
     </div>
