@@ -1,145 +1,87 @@
-const todoItem = {
-    template: '#template-todo-item',
-    props: {
-        todo: {
-            type: Object,
-            required: true
-        },
-        done: {
-            type: Boolean,
-            required: true,
-        },
-    },
-    computed: {
-        hasCategories: function() {
-            return this.todo.categories.length > 0
-        },
-    },
-    methods: {
-        onChangeTodo: function($event) {
-            this.$emit('update:done', $event.target.checked)
-            console.log($event)
-        },
-    },
-}
 Vue.createApp({
-    components: {
-        'todo-item': todoItem,
-    },
     data: function() {
         return {
-            todoTitle: '',
-            todoDescription: '',
-            todoCategories: [],
-            selectedCategory: '',
-            todos: [],
-            categories: [],
-            hideDoneTodo: false,
-            searchWord: '',
-            order: 'desc',
-            categoryName: '',
+            thumbnails: [{
+                    id: 1,
+                    src: "https://placehold.jp/300x300.png"
+                },
+                {
+                    id: 2,
+                    src: "https://placehold.jp/3d4070/ffffff/300x300.png"
+                },
+                {
+                    id: 3,
+                    src: "https://placehold.jp/b32020/ffffff/300x300.png"
+                }
+            ],
+            selectedThumbnailId: undefined, // 選択したサムネイルID
+            imageTranstionName: "prev",
+            isVisible: false, // 表示状態 trueなら表示、falseなら非表示
+            thumbnailHeight: 0, // モーダル内のサムネイルの高さ
+            isThumbnailLoaded: false // サムネイルが読み込み完了したかどうか
+        }
+    },
+    watch: {
+        // サムネイルが選択（変更）されたらサムネイルの読み込み状態を読み込み中にする
+        selectedThumbnailId: function() {
+            this.isThumbnailLoaded = false
         }
     },
     computed: {
-        canCreateTodo: function() {
-            return this.todoTitle !== ''
+        // 現在表示中のサムネイルオブジェクト
+        currentThumbnail: function() {
+            const self = this
+            return _.find(self.thumbnails, function(thumb) {
+                return thumb.id === self.selectedThumbnailId
+            })
         },
-        canCreateCategory: function() {
-            return this.categoryName !== '' && !this.existsCategory
+        // サムネイルをラップしている要素の高さ
+        containerStyle: function() {
+            return {
+                height: this.thumbnailHeight + "px"
+            }
         },
-        existsCategory: function() {
-            const categoryName = this.categoryName
-
-            return this.categories.indexOf(categoryName) !== -1
+        currentThumbnailIndex: function() {
+            const self = this
+            return _.findIndex(self.thumbnails, function(thumb) {
+                return thumb.id === self.selectedThumbnailId
+            })
         },
-        hasTodos: function() {
-            return this.todos.length > 0
+        nextThumbnail: function() {
+            const nextIndex = this.currentThumbnailIndex + 1
+            return this.thumbnails[
+                nextIndex > this.thumbnails.length - 1 ? 0 : nextIndex
+            ]
         },
-        resultTodos: function() {
-            const selectedCategory = this.selectedCategory
-            const hideDoneTodo = this.hideDoneTodo
-            const order = this.order
-            const searchWord = this.searchWord
-            return this.todos
-                .filter(function(todo) {
-                    return (
-                        selectedCategory === '' ||
-                        todo.categories.indexOf(selectedCategory) !== -1
-                    )
-                })
-                .filter(function(todo) {
-                    if (hideDoneTodo) {
-                        return !todo.done
-                    }
-                    return true
-                })
-                .filter(function(todo) {
-                    return (
-                        todo.title.indexOf(searchWord) !== -1 ||
-                        todo.description.indexOf(searchWord) !== -1
-                    )
-                })
-                .sort(function(a, b) {
-                    if (order === 'asc') {
-                        return a.dateTime - b.dateTime
-                    }
-                    return b.dateTime - a.dateTime
-                })
-        },
-    },
-    watch: {
-        todos: {
-            handler: function(next) {
-                window.localStorage.setItem('todos', JSON.stringify(next))
-            },
-            deep: true,
-        },
-        categories: {
-            handler: function(next) {
-                window.localStorage.setItem('categories', JSON.stringify(next))
-            },
-            deep: true,
+        prevThumbnail: function() {
+            const prevIndex = this.currentThumbnailIndex - 1
+            return this.thumbnails[
+                prevIndex > this.thumbnails.length - 1 ? 0 : prevIndex
+            ]
         },
     },
     methods: {
-        createTodo: function() {
-            if (!this.canCreateTodo) {
-                return
-            }
-
-            this.todos.push({
-                id: 'todo-' + Date.now(),
-                title: this.todoTitle,
-                description: this.todoDescription,
-                categories: this.todoCategories,
-                dateTime: Date.now(),
-                done: false,
-            })
-
-            this.todoTitle = ''
-            this.todoDescription = ''
-            this.todoCategories = []
+        // モーダルを開く
+        openModal: function(thumb) {
+            this.isVisible = true
+            this.selectedThumbnailId = thumb.id
         },
-        createCategory: function() {
-            if (!this.canCreateCategory) {
-                return
-            }
-
-            this.categories.push(this.categoryName)
-
-            this.categoryName = ''
+        // 画像の読み込み完了時に実行するメソッド
+        onLoad: function(event) {
+            this.thumbnailHeight =
+                event.target.naturalHeight > 300 ? 300 : event.target.naturalHeight
+            this.isThumbnailLoaded = true
         },
-    },
-    created: function() {
-        const todos = window.localStorage.getItem('todos')
-        const categories = window.localStorage.getItem('categories')
-
-        if (todos) {
-            this.todos = JSON.parse(todos)
+        //モーダルを閉じる処理
+        closeModal: function() {
+            this.isVisible = false
+            this.selectedThumbnailId = undefined
+        },
+        onClickPrev: function() {
+            this.selectedThumbnailId = this.prevThumbnail.id
+        },
+        onClickNext: function() {
+            this.selectedThumbnailId = this.nextThumbnail.id
         }
-
-        if (categories) {
-            this.categories = JSON.parse(categories)
-        }
-    },
-}).mount('#app')
+    }
+}).mount("#app")
