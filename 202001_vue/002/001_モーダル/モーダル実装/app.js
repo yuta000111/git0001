@@ -17,6 +17,7 @@ Vue.createApp({
             isVisible: false,
             selectedThumnailId: undefined,
             isThumbailLoaded: false,
+            thumbnailHeigt: 0,
         }
     },
     computed: {
@@ -27,7 +28,9 @@ Vue.createApp({
             })
         },
         modalstyle: function() {
-
+            return {
+                heigt: this.thumbnailHeigt + "px"
+            }
         }
     },
     methods: {
@@ -37,5 +40,5 @@ Vue.createApp({
                 this.selectedThumnailId = thumb.id
             }
         }
-    }
+    },
 }).mount('#app')
