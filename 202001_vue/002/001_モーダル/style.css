@@ -1,3 +1,54 @@
+/* モーダルの Transition
+  ================================*/
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-to,
+.modal-leave-from {
+  opacity: 1;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail-enter-from,
+.thumbnail-leave-to {
+  opacity: 0;
+}
+
+.thumbnail-enter-to,
+.thumbnail-leave-from {
+  opacity: 1;
+}
+
+.thumbnail-enter-active {
+  transition: opacity 0.3s ease;
+}
+.thumbnail-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+/* PREV、NEXTボタン
+  ================================*/
+.modalButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+.modalButton--prev {
+  left: 0;
+  transform: translateX(-50%);
+}
+.modalButton--next {
+  right: 0;
+  transform: translateX(50%);
+}
+
 /* モーダルに関連する要素のスタイリング
   ================================*/
 .modal-container {

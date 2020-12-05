@@ -3,42 +3,45 @@ Vue.createApp({
         return {
             thumbnails: [{
                     id: 1,
-                    url: "https://placehold.jp/300x300.png"
+                    src: "https://placehold.jp/300x300.png"
                 },
                 {
                     id: 2,
-                    url: "https://placehold.jp/3d4070/ffffff/300x300.png"
+                    src: "https://placehold.jp/3d4070/ffffff/300x300.png"
                 },
                 {
                     id: 3,
-                    url: "https://placehold.jp/b32020/ffffff/300x300.png"
+                    src: "https://placehold.jp/b32020/ffffff/300x300.png"
                 }
             ],
-            isVisible: false,
-            selectedThumnailId: undefined,
-            isThumbailLoaded: false,
-            thumbnailHeigt: 0,
+            isVisibele: false,
+            selectedThumbnailId: undefined,
+            isThumbnailLoaded: false,
+            thumbnailHeight: 0,
         }
     },
     computed: {
         currentThumnail: function() {
             const self = this
-            return _.find(this.thumnails, function(thumb) {
-                return thumb.id === self.selectedThumnailId
+            return _.find(self.thumbnails, function(thumb) {
+                return thumb.id === self.selectedThumbnailId
             })
         },
-        modalstyle: function() {
-            return {
-                heigt: this.thumbnailHeigt + "px"
-            }
-        }
     },
     methods: {
-        openmodal: {
-            openmodal: function(thumb) {
-                this.isVisible = true
-                this.selectedThumnailId = thumb.id
-            }
+        openModal: function(thumb) {
+            this.isVisible = true
+            this.selectedThumbnailId = thumb.id
+        },
+        onLoad: function(event) {
+            this.thumbnailHeight =
+                event.target.naturalHeight > 300 ? 300 : event.target.naturalHeight
+            this.isThumbnailLoaded = true
+        },
+        closeModal: function() {
+            this.isVisible = false
+            this.selectedThumbnailId = undefined
         }
-    },
-}).mount('#app')
+
+    }
+}).mount('#app');
