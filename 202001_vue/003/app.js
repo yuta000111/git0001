@@ -1,13 +1,13 @@
+const app = Vue.createApp({})
+
 function nextFrame(cb) {
     window.requestAnimationFrame(function() {
         window.requestAnimationFrame(cb)
     })
 }
 
-const app = Vue.createApp({})
-
-app.component("my-sample-accordion", {
-    template: "#my-sample-accordion",
+app.component('my-sample-accordion', {
+    template: '#mysample-accordion',
     props: {
         title: {
             type: String,
@@ -20,7 +20,7 @@ app.component("my-sample-accordion", {
         }
     },
     methods: {
-        enter: function(el) {
+        enter: function(el, done) {
             el.style.overflow = "hidden"
             const height = el.scrollHeight
             el.style.height = "0"
@@ -37,11 +37,10 @@ app.component("my-sample-accordion", {
                 el.style.height = "0"
             })
         },
-        afterTransition: function(el) {
+        afterTrasition: function(el) {
             el.style.overflow = ""
-            el.style.height = ""
+            el.styyle.height = ""
         }
     }
 })
-
 app.mount("#app")
