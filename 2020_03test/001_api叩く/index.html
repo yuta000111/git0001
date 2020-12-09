@@ -9,7 +9,40 @@
 
 <body>
     <div id="app" class="container">
-
+        <h1 class="title">テストサイト</h1>
+        <div class="columns">
+            <div class="column is-4 has-text-left">
+                <div class="box">
+                    <p>検索したい言葉を入力してください</p>
+                    <label for="search">
+                    <input type="text"class="input" id="search" v-model.trim="searchWord">
+                    <input type="button" value="検索" @click="searching">
+                </label>
+                </div>
+            </div>
+        </div>
+        <div class="columns is-12 is-centered">
+            <div class="column">
+                <table class="table is-bordered  is-striped">
+                    <thead class="">
+                        <tr>
+                            <th>Tile</th>
+                            <th>閲覧数</th>
+                            <th>コメント数</th>
+                            <th>タグ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in items" :key=items.id @mouseover="hoverdItem=item" @mouseleave="hoverdItem=''" :class="{'is-selected':hoverdItem===item}">
+                            <td>{{item.title}}</td>
+                            <td>{{item.viewCounter}}</td>
+                            <td>{{item.commentCounter}}</td>
+                            <td>{{item.tags}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.global.js"></script>
