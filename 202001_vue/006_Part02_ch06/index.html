@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script type="text/x-template" id="qa-template">
+        <div class="box">
+            <p class="is-size-4">Q:{{ questioinText}}</p>
+            <div class="column">
+                <button class="button is-fullwidth is-success" @click="onClickYesBtn">
+                    YES
+                </button>
+            </div>
+            <div class="column">
+                <button class="button is-fullwidth is-success" @click="onClickNoBtn">
+                    NO
+                </button>
+            </div>
+    </script>
+    <script type="text/x-template" id="result-template">
+        <div class="box">
+            <div class="content has-text-centered">
+                <h2 class="title">結果発表</h2>
+                <table class="table is-bordered">
+                    <tr>
+                        <th v-for="(q,index) in questions">
+                            Q{{index + 1}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <td v-for="correct in corrects" :class="getCorrectClassName(correct.cd)">
+                            {{correct.value}}
+                        </td>
+                    </tr>
+                </table>
+                <p>あなたの得点は…</p>
+            </div>
+        </div>
+    </script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@3.0.0/dist/vue.global.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script src="./app.js"></script>
+
+</html>
