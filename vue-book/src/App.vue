@@ -1,6 +1,6 @@
 <template>
   <h1>Vueクイズ</h1>
-  <quiz></quiz>
+  <quiz @click-yes-btn="doAnswer" @click-no-btn="doAnswer"></quiz>
 </template>
 
 <script>
@@ -36,7 +36,26 @@ export default {
                     answer: ANSWER.YES
                 }
             ],
-            currentIndex:0
+            currentIndex:0,
+            yourAnswer:[]
+    }
+  },
+  methods:{
+    doAnswer:function(answer){
+      this.yourAnswer[this.currentIndex] = answer
+      this.nextIndex()
+    },
+    nextIndex:function(){
+      if (this.questions.length > this.currentIndex){
+        this.currentIndex += 1
+      }
+    },
+    restartIndex:function(){
+      this.currentIndex = 0
+      this.initYourAnswerArray()
+    },
+    initYourAnswerArray:function(){
+      this.yourAnswer = Array(this.questions.length)
     }
   }
 }
