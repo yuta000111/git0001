@@ -1,11 +1,12 @@
 <template>
-  <h1>Vueクイズ</h1>
   <div class="box">
       <div class="content">
           <p class="is-size-4">Q:{{question}}</p>
           <div class="columns">
               <div class="column">
                   <button class="button is-fullwidth is-success" @click="clickYesBtn">YES</button>
+              </div>
+              <div class="column">
                   <button class="button is-fullwidth is-warning" @click="clickNoBtn">NO</button>
               </div>
           </div>

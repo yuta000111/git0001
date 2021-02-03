@@ -1,17 +1,24 @@
 <template>
-  <h1>Vueクイズ</h1>
-  <quiz @click-yes-btn="doAnswer" @click-no-btn="doAnswer"></quiz>
+<div class="container">
+  <div class="columns is-mobile is-centered">
+    <div class="colums is-half">
+      <h1 class="title is-1 has-text-centered">Vueクイズ</h1>
+      <quiz v-if="questionText" :question="questionText.text" @click-yes-btn="doAnswer" @click-no-btn="doAnswer"></quiz>
+      <status v-if="!questionText" :totalScore="totalScore" :questions="questions" :yourAnswer="yourAnswer"></status>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import quiz from '@/components/quiz'
+import status from '@/components/status'
 const ANSWER = { YES: 1, NO: 0 }
-const CORRECT = { CD: 1, VALUE: "○" }
-const INCORRECT = { CD: 0, VALUE: "×" }
-const MAX_POINT = 100
+const MAX_POINT =100
 export default {
   components:{
-    quiz
+    quiz,
+    status
   },
   data:function(){
     return{
@@ -40,6 +47,21 @@ export default {
             yourAnswer:[]
     }
   },
+  computed:{
+    questionText:function(){
+      return this.questions[this.currentIndex]
+    },
+    correctQuestion:function(){
+      const self =this
+      return this.questions.filter(function(q,i){
+        return q.answer === self.yourAnswer[i]
+      })
+    },
+    totalScore:function(){
+        const score = MAX_POINT / this.questions.length
+        return Math.floor(score * this.correctQuestion.length)
+    }
+  },
   methods:{
     doAnswer:function(answer){
       this.yourAnswer[this.currentIndex] = answer
@@ -63,5 +85,7 @@ export default {
 
 <style lang="scss">
 @import "../node_modules/bulma/bulma.sass";
-
+.container{
+  margin-top: 30px;
+}
 </style>
