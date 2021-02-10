@@ -16,6 +16,7 @@
                 rel="noopener noreferrer"
                 class="button--green"
             ></a>
+            今日の進捗
         </div>
     </div>
 </template>
