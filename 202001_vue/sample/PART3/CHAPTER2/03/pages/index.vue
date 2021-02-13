@@ -205,6 +205,6 @@
 
 <style>
 .visual-home {
-  background-image: url('~@/assets/img/visual-home.jpg');
+  background-image: url("~@/assets/img/visual-home.jpg");
 }
 </style>

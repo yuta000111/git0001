@@ -7,13 +7,14 @@
                 >
                     <h1>
                         <a
+                            class="text-white text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-no-wrap"
                             href="/"
-                            class="text-white text-sm font-bold leading-relaxed inliine-block mr-4 py-2 whitespace-no-wrap"
-                            >MdN Cafe</a
                         >
+                            MdN Cafe
+                        </a>
                     </h1>
                     <div class="text-white md:hidden">
-                        <button class="focus:outliine-none">
+                        <button class="focus:outline-none">
                             <svg
                                 class="h-6 w-6 fill-current"
                                 viewBox="0 0 24 24"
@@ -41,6 +42,13 @@
                         </li>
                         <li class="w-full md:w-auto md:ml-5">
                             <a
+                                href="/shop/"
+                                class="text-white md:block inline-block md:py-0 py-5 px-5 md:px-0 w-full"
+                                >店舗情報</a
+                            >
+                        </li>
+                        <li class="w-full md:w-auto md:ml-5">
+                            <a
                                 href="/menu/"
                                 class="text-white md:block inline-block md:py-0 py-5 px-5 md:px-0 w-full"
                                 >メニュー</a
@@ -48,7 +56,7 @@
                         </li>
                         <li class="w-full md:w-auto md:ml-5">
                             <a
-                                href="/nformation/"
+                                href="/information/"
                                 class="text-white md:block inline-block md:py-0 py-5 px-5 md:px-0 w-full"
                                 >お知らせ</a
                             >
@@ -107,14 +115,138 @@
                 </svg>
             </div>
         </div>
+        <div class="w-full md:max-w-3xl mx-auto pt-20 px-6 md:px-0">
+            <h2
+                class="font-sans text-lg text-gray-800 text-center text-3xl mb-10"
+            >
+                MdN Cafeのおすすめメニュー
+            </h2>
+            <div class="flex flex-wrap justify-between mb-20 md:mb-0">
+                <div class="md:w-56 mb-20 shadow-lg bg-gray-200">
+                    <div class="max-w">
+                        <img
+                            src="~/assets/リネーム/ogasuta458A8143_TP_V.jpg"
+                            alt="商品名"
+                            class="w-full"
+                        />
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2">
+                                アメリカンコーヒー
+                            </div>
+                            <p class="text-gray-700 text-base mb-4">
+                                480円（税込）
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-56 mb-20 shadow-lg bg-gray-200">
+                    <div class="max-w">
+                        <img
+                            src="~/assets/リネーム/ogasuta458A8143_TP_V.jpg"
+                            alt="商品名"
+                            class="w-full"
+                        />
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2">
+                                アメリカンコーヒー
+                            </div>
+                            <p class="text-gray-700 text-base mb-4">
+                                480円（税込）
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-56 mb-20 shadow-lg bg-gray-200">
+                    <div class="max-w">
+                        <img
+                            src="~/assets/リネーム/ogasuta458A8143_TP_V.jpg"
+                            alt="商品名"
+                            class="w-full"
+                        />
+                        <div class="px-6 py-4">
+                            <div class="font-bold text-xl mb-2">
+                                アメリカンコーヒー
+                            </div>
+                            <p class="text-gray-700 text-base mb-4">
+                                480円（税込）
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-10 mx-auto text-center">
+                <a
+                    href="/menu/"
+                    class="font-semibold md:text-lg xl:text-base px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 leading-tight shadow-md rounded-lg bg-white hover:bg-gray-200 text-gray-800"
+                >
+                    メニューの一覧
+                </a>
+            </div>
+            <h2
+                class="font-sans text-lg text-gray-800 text-center text-3xl mb-10"
+            >
+                MdN Cafeのお知らせ
+            </h2>
+            <div class="mb-20">
+                <div
+                    class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 shadow-md mb-5"
+                >
+                    <a href="/information/detail" class="block px-4 py-3">
+                        <time
+                            class="text-gray-700 text-base mb-1 block md:w-1/6"
+                        >
+                            2020.08.15
+                        </time>
+                        <div class="md:w-10/12">お知らせタイトル</div>
+                    </a>
+                </div>
+                <div
+                    class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 shadow-md mb-5"
+                >
+                    <a href="/information/detail" class="block px-4 py-3">
+                        <time
+                            class="text-gray-700 text-base mb-1 block md:w-1/6"
+                        >
+                            2020.08.15
+                        </time>
+                        <div class="md:w-10/12">お知らせタイトル</div>
+                    </a>
+                </div>
+                <div
+                    class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 shadow-md mb-5"
+                >
+                    <a href="/information/detail" class="block px-4 py-3">
+                        <time
+                            class="text-gray-700 text-base mb-1 block md:w-1/6"
+                        >
+                            2020.08.15
+                        </time>
+                        <div class="md:w-10/12">お知らせタイトル</div>
+                    </a>
+                </div>
+            </div>
+            <div class="mb-10 mx-auto text-center">
+                <a
+                    href="/information/"
+                    class="font-semibold md:text-lg xl:text-base px-4 md:px-5 xl:px-4 py-3 md:py-4 xl:py-3 leading-tight shadow-md rounded-lg bg-white hover:bg-gray-200 text-gray-800"
+                >
+                    お知らせの一覧
+                </a>
+            </div>
+        </div>
+        <footer class="bg-black pb-10 pt-10">
+            <p
+                class="text-center text-white text-sm font-bold leading-relaxed whitespace-no-wrap uppercase"
+            >
+                Copyright © 2020 NUXT SMAPLE SITE DEMO
+            </p>
+        </footer>
     </div>
 </template>
 
-<script>
-export default {};
-</script>
+<script></script>
 
-<style lang="scss">
+<style>
 .visual-home {
     background-image: url('~@/assets/img/visual-home.jpg');
 }
