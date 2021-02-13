@@ -1,19 +1,11 @@
 <template>
-    <h2>こんにちは</h2>
+    <h2 class="font-sans text-lg text-gray-800 text-center text-3xl mb-10">
+        <slot></slot>
+    </h2>
 </template>
 <script>
 export default {
-    props: {
-        name: {
-            type: String,
-            dedault: '山田',
-        },
-    },
+    name: 'BaseHeading',
 };
 </script>
-<style scoped>
-h2 {
-    font-size: 30px;
-    font-weight: bold;
-}
-</style>
+<style scoped></style>
