@@ -1,65 +1,22 @@
 <template>
-    <LayoutWrapper>
+    <layout-wrapper>
         <layout-visual
-            title="NUXT SAMPLE SITE DEMO"
-            message="お知らせやメニューにmicroCMSを導入したDEMOサイトになります。"
+            title="NUXT SMAPLE SITE DEMO"
+            message="お知らせやメニューをmicroCMSを導入したDEMOサイトになります。"
         />
         <div class="w-full md:max-w-3xl mx-auto pt-20 px-6 md:px-0">
-            <base-heading> NPM Cafeのおすすめメニュー</base-heading>
-            <div class="flex flex-wrap justify-between mb-20 md:mb-0">
-                <div class="md:w-56 mb-20 shadow-lg bg-gray-200">
-                    <div class="max-w">
-                        <img
-                            src="~/assets/リネーム/ogasuta458A8143_TP_V.jpg"
-                            alt="商品名"
-                            class="w-full"
-                        />
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">
-                                アメリカンコーヒー
-                            </div>
-                            <p class="text-gray-700 text-base mb-4">
-                                480円（税込）
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-56 mb-20 shadow-lg bg-gray-200">
-                    <div class="max-w">
-                        <img
-                            src="~/assets/リネーム/ogasuta458A8143_TP_V.jpg"
-                            alt="商品名"
-                            class="w-full"
-                        />
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">
-                                アメリカンコーヒー
-                            </div>
-                            <p class="text-gray-700 text-base mb-4">
-                                480円（税込）
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-56 mb-20 shadow-lg bg-gray-200">
-                    <div class="max-w">
-                        <img
-                            src="~/assets/リネーム/ogasuta458A8143_TP_V.jpg"
-                            alt="商品名"
-                            class="w-full"
-                        />
-                        <div class="px-6 py-4">
-                            <div class="font-bold text-xl mb-2">
-                                アメリカンコーヒー
-                            </div>
-                            <p class="text-gray-700 text-base mb-4">
-                                480円（税込）
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <base-heading>MdN Cafeのおすすめメニュー</base-heading>
+            <div class="flex md:flex-wrap justify-between mb-20 md:mb-0">
+                <layout-menu-list
+                    wrap-class="flex md:flex-wrap justify-between mb-20 md:mb-0"
+                    item-class="md:w-56 mb-20 shadow-lg bg-gray-200"
+                    block-class="max-w"
+                    image-class="w-full"
+                    data-class="px-6 py-4"
+                    :flag-body="false"
+                />
             </div>
-            <base-button name="メニューの一覧" link="/infomation" />
+            <base-button name="メニューの一覧" link="/menu" />
             <h2
                 class="font-sans text-lg text-gray-800 text-center text-3xl mb-10"
             >
@@ -105,7 +62,7 @@
             </div>
             <base-button name="お知らせの一覧" link="/menu/" />
         </div>
-    </LayoutWrapper>
+    </layout-wrapper>
 </template>
 
 <script></script>

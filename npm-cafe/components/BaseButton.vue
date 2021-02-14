@@ -20,7 +20,7 @@ export default {
             type: String,
             required: true,
         },
-        classPosiion: {
+        classPosition: {
             type: String,
             default: 'text-center',
         },
