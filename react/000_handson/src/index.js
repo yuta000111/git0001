@@ -1,11 +1,10 @@
-import React from "react";
-import { render } from "react-dom";
-import ColorProvider from "./ColorProvider";
-import App from "./App";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
-render(
-  <ColorProvider>
+ReactDOM.render(
+  <React.StrictMode>
     <App />
-  </ColorProvider>,
-  document.getElementById("root")
+  </React.StrictMode>,
+  document.getElementById('root')
 );
