@@ -1,34 +1,41 @@
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function useWindowSize() {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-  console.log('1, useWindowSize');
+function GitHubUser({ login }) {
+  const [data, setData] = useState();
+  const [error, setError] = useState();
+  const [loading, setLoading] = useState(false);
 
-  const resize = () => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-    console.log('2, resize');
-  };
+  useEffect(() => {
+    if (!login) return;
+    setLoading(true);
+    fetch(`https://api.github.com/users/${login}`)
+      .then((data) => data.json())
+      .then(setData)
+      .then(() => setLoading(false))
+      .catch(setError);
+  }, [login]);
 
-  useLayoutEffect(() => {
-    console.log('3, useLayoutEffect');
-    window.addEventListener('resize', resize);
-    resize();
-    return () => {
-      console.log('4, clean up');
-      window.removeEventListener('resize', resize);
-    };
-  }, []);
+  if (error)
+    return <pre>{JSON.stringify(error, null, 2)}</pre>;
+  if (loading) return <h1>loading...</h1>;
+  if (!data) return null;
 
-  return [width, height];
+  return (
+    <div className="githubUser">
+      <img
+        src={data.avatar_url}
+        alt={data.login}
+        style={{ width: 200 }}
+      />
+      <div>
+        <h1>{data.login}</h1>
+        {data.name && <p>{data.name}</p>}
+        {data.location && <p>{data.location}</p>}
+      </div>
+    </div>
+  );
 }
 
 export default function App() {
-  const [w, h] = useWindowSize();
-  return (
-    <div>
-      {w}x{h}
-    </div>
-  );
+  return <GitHubUser login="moonhighway" />;
 }
